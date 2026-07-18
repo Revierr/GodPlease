@@ -258,7 +258,7 @@ label start:
     camera:
         subpixel True 
         pos (-1719, 1818) 
-        linear 3.00 pos (-657, 360) 
+        ease 3.0 pos (-657, 360) 
     with Pause(3.10)
     camera:
         pos (-657, 360) 
@@ -270,7 +270,7 @@ label start:
     camera:
         subpixel True 
         pos (-657, 360) zoom 1.96 
-        linear 4.00 pos (0, 1080) zoom 1.0 
+        ease 4.00 pos (0, 1080) zoom 1.0 
     with Pause(4.10)
     camera:
         pos (0, 1080) zoom 1.0 

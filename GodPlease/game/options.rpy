@@ -48,14 +48,14 @@ define build.name = "Penance"
 
 define config.has_sound = True
 define config.has_music = True
-define config.has_voice = False
+define config.has_voice = True
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
 ## uncomment a line below and use it to set a sample sound to play.
 
-define config.sample_sound = "sample-sound.ogg"
-#define config.sample_voice = "sample-voice.ogg"
+define config.sample_sound = "button_hover.ogg"
+define config.sample_voice = "voice.ogg"
 
 
 ## Uncomment the following line to set an audio file that will be played while

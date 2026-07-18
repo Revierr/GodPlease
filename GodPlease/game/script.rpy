@@ -91,7 +91,7 @@ define thunder = "audio/thunderstrike.ogg"
 #particle effects
 image dusty = SnowBlossom(At("dust", varying_size), count=12, border=50, xspeed=(3, -3), yspeed=(-20, -30), start=0.5, fast=True)
 image rainy = SnowBlossom(At("rain", varying_size), count=75, border=1095, xspeed=(3, -3), yspeed=(1740, 1990), start=0.5, fast=True) #front layer
-image rainy2 = SnowBlossom(At("rain", varying_size), count=45, border=1095, xspeed=(3, -3), yspeed=(2740, 2090), start=0.5, fast=True) #back layer
+image rainy2 = SnowBlossom(At("rain", varying_size_small), count=45, border=1095, xspeed=(3, -3), yspeed=(2740, 2090), start=0.5, fast=True) #back layer
 
 #lightning light
 transform lightning_lighting:
@@ -104,6 +104,8 @@ transform lightning_lighting:
 
 transform varying_size:
     zoom renpy.random.uniform(0.5, 1.5)
+transform varying_size_small:
+    zoom renpy.random.uniform(0.5, 0.75)
 
 transform fade_in_out_loop:
     alpha 0.5
@@ -114,6 +116,15 @@ transform fade_in_out_loop:
 transform fade_in:
     alpha 0.0
     linear 0.5 alpha 1.0  
+
+style navigation_button_text is gui_text:
+    properties gui.button_text_properties("navigation_button")
+    
+    # Keeps text from jittering by giving idle state invisible padding
+    idle_outlines [ (3, "#00000000", 0, 0) ]
+    
+    # The glowing effect (Stacked outlines from sharpest to softest)
+    hover_outlines [ (2, "#e7fcfc40", 0, 0), (3, "#99999940", 0, 0) ]
 
 ##########################################
 # █████ █████  ███  ████  █████ 
@@ -174,7 +185,7 @@ label start:
     with Pause(3.10)
     camera:
         pos (-657, 360) 
-    #something where he dosent even know if he still has his arm here
+    #TODO: something where he dosent even know if he still has his arm here
 
     "He exhales shakily."
 

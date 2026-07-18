@@ -246,14 +246,14 @@ screen quick_menu():
             style_prefix "quick"
             style "quick_menu"
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
+            textbutton _("Back") action Rollback() hover_sound "audio/button_hover.ogg"
+            textbutton _("History") action ShowMenu('history') hover_sound "audio/button_hover.ogg"
             #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             #textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
+            textbutton _("Save") action ShowMenu('save') hover_sound "audio/button_hover.ogg"
             #textbutton _("Q.Save") action QuickSave()
             #textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Settings") action ShowMenu('settings')
+            textbutton _("Settings") action ShowMenu('settings') hover_sound "audio/button_hover.ogg"
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -340,6 +340,7 @@ style navigation_button_text is gui_button_text
 
 style navigation_button:
     size_group "navigation"
+    hover_sound "audio/button_hover.ogg" # Add your sound path here
     properties gui.button_properties("navigation_button")
 
 style navigation_button_text:
@@ -1540,10 +1541,10 @@ screen quick_menu():
             style "quick_menu"
             style_prefix "quick"
 
-            textbutton _("Back") action Rollback()
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+            textbutton _("Back") action Rollback() 
+            #textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) 
+            textbutton _("Auto") action Preference("auto-forward", "toggle") 
+            textbutton _("Menu") action ShowMenu() 
 
 
 style window:

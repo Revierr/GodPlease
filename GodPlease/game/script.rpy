@@ -264,7 +264,11 @@ label start:
         pos (-657, 360) 
     #TODO: something where he dosent even know if he still has his arm here
 
+    n "I figure it won't be long 'till I drop now{cps=5},{/cps} everything's already spinning{cps=3}...{/cps}"
+
     "He exhales shakily."
+
+    n "{cps=8}What am I doing{cps=3}...?{/cps}"
 
     window hide
     camera:
@@ -289,7 +293,7 @@ label start:
     n "When the invasion started{cps=5}, {/cps}I didn't care about it."
 
     n "I was in my own world{cps=5}, {/cps}and everything else didn't matter."
-    n "But then it came to take me with it{cps=5}, {/cps}forced me to go{cps=3}...{/cps}"
+    n "But then it came to take me with it{cps=5}, {/cps}'forced me to go{cps=3}...{/cps}"
     n "If my momma ever taught me anything{cps=5}, {/cps}it's that things worth doing are worth doing well."
 
     window hide
@@ -410,7 +414,7 @@ label start:
     n "{cps=17}I know what I deserve.{/cps}"
     n "{cps=15}But if I die here{cps=5}, {/cps}it will never end.{/cps}"
     n "{cps=8}So please{cps=3}...{/cps}{/cps}"
-    n "{cps=3}{shader=jitter}Give me the strength.{/shader}{/cps}"
+    n "{cps=3}{shader=jitter}Give me strength.{/shader}{/cps}"
     
     menu: 
         "You've earned your rest now.":

@@ -262,7 +262,6 @@ label start:
     with Pause(3.10)
     camera:
         pos (-657, 360) 
-    #TODO: something where he dosent even know if he still has his arm here
 
     n "I figure it won't be long 'till I drop now{cps=5},{/cps} everything's already spinning{cps=3}...{/cps}"
 

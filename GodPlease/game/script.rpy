@@ -76,6 +76,7 @@ screen content_warning():
 ##########################################
 #images
 image blackBG = "images/bg/black.png"
+image whiteBG = "images/bg/white.png"
 image warningsign = "images/warningsign.png"
 image guy neutral = "images/guy_neutral.png"
 image guy angry = "images/guy_angry.png"
@@ -113,14 +114,14 @@ transform fade_in:
 transform lightning_lighting:
     matrixcolor TintMatrix("#ffffff") * BrightnessMatrix(0.0)
     0.05
-    linear 0.05 matrixcolor TintMatrix("#ffe9cc") * BrightnessMatrix(0.3) * ContrastMatrix(1.5)
+    linear 0.05 matrixcolor TintMatrix("#cccff7") * BrightnessMatrix(0.3) * ContrastMatrix(1.5)
     pause 0.5
     linear 0.25 matrixcolor TintMatrix("#ffffff")  * BrightnessMatrix(0.0) * ContrastMatrix(1.0)
 
 transform lightning_lighting_soft:
     matrixcolor TintMatrix("#ffffff") * BrightnessMatrix(0.0)
     0.05
-    linear 0.05 matrixcolor TintMatrix("#ffe9cc") * BrightnessMatrix(0.1) * ContrastMatrix(1.2)
+    linear 0.05 matrixcolor TintMatrix("#cccff7") * BrightnessMatrix(0.1) * ContrastMatrix(1.2)
     pause 0.5
     linear 0.25 matrixcolor TintMatrix("#ffffff")  * BrightnessMatrix(0.0) * ContrastMatrix(1.0)
 
@@ -377,7 +378,7 @@ label start:
             
             camera 
             stop music
-            scene blackBG 
+            scene whiteBG 
             with Dissolve(3.5)
             "Forward on he marches."
             "Along his path{cps=5}, {/cps}he finds a wounded invader clinging to life like he was moments ago."

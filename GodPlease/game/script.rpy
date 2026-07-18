@@ -33,7 +33,7 @@ screen content_warning():
     # 2. Timer that waits 1.5 seconds, then changes the variable
     timer 1.5 action SetScreenVariable("show_element", True)
 
-    add "#000000"
+    add "blackBG"
     if show_element == True:
         button:# An invisible button covering the entire standard game window
             xsize 1920
@@ -75,6 +75,7 @@ screen content_warning():
 # ▄█▄ █ ▀ █ █▀█ █▄█ ██▄ ▄██ 
 ##########################################
 #images
+image blackBG = "images/bg/black.png"
 image warningsign = "images/warningsign.png"
 image guy neutral = "images/guy_neutral.png"
 image guy angry = "images/guy_angry.png"
@@ -90,15 +91,6 @@ define thunder = "audio/thunderstrike.ogg"
 image dusty = SnowBlossom(At("dust", varying_size), count=12, border=50, xspeed=(3, -3), yspeed=(-20, -30), start=0.5, fast=True)
 image rainy = SnowBlossom(At("rain", varying_size), count=75, border=1095, xspeed=(3, -3), yspeed=(1740, 1990), start=0.5, fast=True) #front layer
 image rainy2 = SnowBlossom(At("rain", varying_size_small), count=45, border=1095, xspeed=(3, -3), yspeed=(2740, 2090), start=0.5, fast=True) #back layer
-
-#lightning light
-transform lightning_lighting:
-    matrixcolor TintMatrix("#fff") #no tint
-    block:
-        linear 0.25 matrixcolor TintMatrix("#f7e57f")
-        linear 0.25 matrixcolor TintMatrix("#ecde8b")
-        linear 0.25 matrixcolor TintMatrix("#fffadc")
-        linear 0.5 matrixcolor TintMatrix("#fff")
 
 #transforms
 transform varying_size:
@@ -116,6 +108,22 @@ transform fade_in_out_loop:
 transform fade_in:
     alpha 0.0
     linear 0.5 alpha 1.0  
+
+#lightning light
+transform lightning_lighting:
+    matrixcolor TintMatrix("#ffffff") * BrightnessMatrix(0.0)
+    0.05
+    linear 0.05 matrixcolor TintMatrix("#ffe9cc") * BrightnessMatrix(0.3) * ContrastMatrix(1.5)
+    pause 0.5
+    linear 0.25 matrixcolor TintMatrix("#ffffff")  * BrightnessMatrix(0.0) * ContrastMatrix(1.0)
+
+transform lightning_lighting_soft:
+    matrixcolor TintMatrix("#ffffff") * BrightnessMatrix(0.0)
+    0.05
+    linear 0.05 matrixcolor TintMatrix("#ffe9cc") * BrightnessMatrix(0.1) * ContrastMatrix(1.2)
+    pause 0.5
+    linear 0.25 matrixcolor TintMatrix("#ffffff")  * BrightnessMatrix(0.0) * ContrastMatrix(1.0)
+
 
 #styles
 style navigation_button_text is gui_text:
@@ -160,21 +168,24 @@ label start:
 
     play music amb_rain fadein 3.0 fadeout 3.0
     pause 3.0
-    "My brethren and foes surround me, united in death."    
-    "Their bloodied weapons cleaned by the rain, left to rust."
+    "My brethren and foes surround me{cps=5}, {/cps}united in death."    
+    "Their bloodied weapons cleaned by the rain{cps=5}, {/cps}left to rust."
     "Tents stood abandoned with tattered sleeping mats."
     "Few still hold onto life yet lack the strength to move."
-    "They wait for rescue, but the victors have already moved on."
+    "They wait for rescue{cps=5}, {/cps}but the victors have already moved on."
 
     camera at lightning_lighting
     play sound thunder
     $ renpy.with_statement(vpunch)
     pause(1.5)
+    #safety force reset
+    camera:
+        matrixcolor IdentityMatrix() 
     "Nobody is coming back for us."
 
     window hide
     pause(1.5)
-    "{cps=3}...{/cps}God, can you hear me?"
+    "{cps=3}...{/cps}God{cps=5}, {/cps}can you hear me?"
 
     "I know I've never kept up with prayer before."
     "{cps=3}...{/cps}I never thought I'd need it."
@@ -202,32 +213,40 @@ label start:
     window show
 
     "My family's been in the countryside for as long as time can tell."
-    "I swear, I was helping with harvest before I could even stand{cps=3}...{/cps}"
-    "My momma always snuck me extra food, hoping I'd grow bigger than my pops."
+    "I swear{cps=5}, {/cps}I was helping with harvest before I could even stand{cps=3}...{/cps}"
+    "My momma always snuck me extra food{cps=5}, {/cps}hoping I'd grow bigger than my pops."
 
     show guy smile with Dissolve(0.5)
     "And I guess she got her wish."
 
+    window hide
     pause (1.5)
     show guy neutral with Dissolve(0.5)
-    "When the invasion started, I didn't care about it."
+    "When the invasion started{cps=5}, {/cps}I didn't care about it."
 
-    "I was in my own world, and everything else didn't matter."
-    "But then it came to take me with it, forced me to go{cps=3}...{/cps}"
-    "If my momma ever taught me anything, it's that things worth doing are worth doing well."
+    "I was in my own world{cps=5}, {/cps}and everything else didn't matter."
+    "But then it came to take me with it{cps=5}, {/cps}forced me to go{cps=3}...{/cps}"
+    "If my momma ever taught me anything{cps=5}, {/cps}it's that things worth doing are worth doing well."
 
+    window hide
     pause (1.5)
     show guy smile with Dissolve(0.5)
     "I've always been a stickler for the rules."
-
     "Listening gets you far in the ranks."
+    camera at lightning_lighting_soft
+    play sound thunder volume(0.5)
+    $ renpy.with_statement(vpunch)
+    pause(1.5)
+    #safety force reset
+    camera:
+        matrixcolor IdentityMatrix() 
     "I was put in charge of a squadron."
     "And I led them all around doing whatever task I had."
 
     show guy neutral with Dissolve(1.5)
-    "I was just parroting commands, and we all were executing someone else's grand scheme."
+    "I was just parroting commands{cps=5}, {/cps}and we all were executing someone else's grand scheme."
 
-    "I never thought too far into it; it was almost like a game. "
+    "I never thought too far into it{cps=5}; {/cps} it was almost like a game. "
     "Each success I had was just{cps=3}...{/cps} me earning points."
     "It didn't matter what I destroyed or who I killed because it was just events in my story."
     "Just like the grand knight tales I was raised on."
@@ -235,68 +254,78 @@ label start:
     show guy angry with Dissolve(0.5)
     "People who opposed me deserved what happened to them{cps=3}...{/cps}"
 
-    "The second they chose the wrong side, they were fated to die."
-    "Without them{cps=3}...{/cps} I'd still be with my family, working the summers away and lazing through the winters."
+    "The second they chose the wrong side{cps=5}, {/cps}they were fated to die."
+    "Without them{cps=3}...{/cps} I'd still be with my family{cps=5}, {/cps}working the summers away and lazing through the winters."
 
     show guy neutral with Dissolve(0.5)
-    "But about a week ago, something changed in my mind."
+    "But about a week ago{cps=5}, {/cps}something changed in my mind."
 
-    "You see, there is a small village near the border{cps=3}...{/cps}"
-    "Well, small as in there weren't many people{cps=3}...{/cps}"
+    "You see{cps=5}, {/cps}there is a small village near the border{cps=3}...{/cps}"
+    "Well{cps=5}, {/cps}small as in there weren't many people{cps=3}...{/cps}"
     "But their fields were grand."
     "Each field could fit at least ten of my fields at home{cps=3}...{/cps}"
-    "However, they were ill-fated to feed those bastardly invaders. "
-    "And so, with my luck, my next task was to destroy them."
-
+    "However{cps=5}, {/cps}they were ill-fated to feed those bastardly invaders. "
+    "And so{cps=5}, {/cps}with my luck{cps=5}, {/cps}my next task was to destroy them."
+    window hide
     show guy angry with Dissolve(1.5)
     pause(1.0)
     "And{cps=3}...{/cps} I did."
     
     "I've seen my fair share of the war's horrors."
-    "I've killed people with my own hands, and I've seen people lose everything."
+    camera at lightning_lighting
+    play sound thunder
+    $ renpy.with_statement(vpunch)
+    pause(1.5)
+    #safety force reset
+    camera:
+        matrixcolor IdentityMatrix() 
+    "I've killed people with my own hands{cps=5}, {/cps}and I've seen people lose everything."
     "I've seen injuries and ailments not even fiction would have the soul to tell."
     "But none of it felt real until then."
 
+    window hide
     pause (1.5)
-    "The fields were burned to the ground, and the sky was painted black with their cinders."
+    "The fields were burned to the ground{cps=5}, {/cps}and the sky was painted black with their cinders."
 
     show guy neutral with Dissolve(0.5)
     "{cps=3}...{/cps}The smell reminded me of my father's cooking."
 
+    window hide
     pause (1.5)
-    "The fire spread from the fields to the houses, and it didn't take long for the whole village to be engulfed."
+    "The fire spread from the fields to the houses{cps=5}, {/cps}and it didn't take long for the whole village to be engulfed."
 
-    "Right before I left, I watched a cottage collapse."
-    "The wooden beams turned to ash, and the rest of the building crumpled after."
+    "Right before I left{cps=5}, {/cps}I watched a cottage collapse."
+    "The wooden beams turned to ash{cps=5}, {/cps}and the rest of the building crumpled after."
 
     show guy angry with Dissolve(0.5)
     "There was a man still in there."
 
-    "But then, all I could see was his head and arm."
+    "But then{cps=5}, {/cps}all I could see was his head and arm."
     "He must have been gone for a while; his face was already pale."
     "But he looked like an ordinary man."
     "I'd seen someone like him thousands of times before."
     "It felt like his blank and lifeless eyes bore into mine."
     "I couldn't meet his gaze anymore."
-    "His arm stood out of the rubble, bent the wrong way{cps=3}...{/cps}"
+    "His arm stood out of the rubble{cps=5}, {/cps}bent the wrong way{cps=3}...{/cps}"
     "His flesh blackened and flaked away."
     "Like the burnt firewood I'd cleaned from the stoves after cold winter nights."
     "Crackling and{cps=3}...{/cps}"
     "And{cps=3}...{/cps}"
-    "When all of my memories go, his face will be the last one I see."
+    "When all of my memories go{cps=5}, {/cps}his face will be the last one I see."
 
+    window hide
     show guy neutral with Dissolve(1.5)
     pause (1.5)
     "I can't help but wonder if in another life that was me."
 
-    "If I stayed in the peace of my home, would a war find me{cps=3}...{/cps}"
+    "If I stayed in the peace of my home{cps=5}, {/cps}would a war find me{cps=3}...{/cps}"
     "Would I be burned beneath my house?"
     "I can't shake the cruelty of it."
     "I have no way of knowing if that person was even aligned with the invaders."
     "Would it matter if he were?"
     "I just know I fated him to a cruel death."
-    "And many, many, many, more."
-    "If not for this wound, I'd be preparing for another attack right now."
+    "And many{cps=5}, {/cps}many{cps=5}, {/cps}many{cps=5}, {/cps}more."
+    "If not for this wound{cps=5}, {/cps}I'd be preparing for another attack right now."
     "Another bread basket to burn{cps=3}...{/cps}"
 
     show guy angry with Dissolve(0.5)
@@ -315,42 +344,44 @@ label start:
 
     "{cps=20}I know what I've done.{/cps}"
     "{cps=17}I know what I deserve.{/cps}"
-    "{cps=15}But if I die here, it will never end.{/cps}"
+    "{cps=15}But if I die here{cps=5}, {/cps}it will never end.{/cps}"
     "{cps=8}So please{cps=3}...{/cps}{/cps}"
     "{cps=3}{shader=jitter}Give me the strength.{/shader}{/cps}"
     
     menu: 
         "You've earned your rest now.":
             show guy smile with Dissolve(0.5)
-            "His head perks up one more time, and he stares into the sky."
+            "His head perks up one more time{cps=5}, {/cps}and he stares into the sky."
 
             "The rain pounds against his face."
             "Each drop rolls down to the gaping wound in his arm."
             "His blood slowly pools around him."
             "A daze steals his consciousness away{cps=3}...{/cps}"
-
+            camera 
             stop music
-            #TODO: BROKEN BLACK SCREEN
-            #scene expression Solid("#000000") with Dissolve(3.5) 
-            "His posture loosens at first, then he crumples forward into the mud."
+            scene blackBG 
+            with Dissolve(3.5)
+            
+            "His posture loosens at first{cps=5}, {/cps}then he crumples forward into the mud."
 
-            "His last thoughts were prayers: Let his next life be peaceful, and let his family be safe."
+            "His last thoughts were prayers: Let his next life be peaceful{cps=5}, {/cps}and let his family be safe."
             "Justice had finally caught him."
             pause(1.5)
         "Wreak your redemption on the world.":
             "His body explodes with vitality."
-            "His arm, once spewing blood, had mended."
+            "His arm{cps=5}, {/cps}once spewing blood{cps=5}, {/cps}had mended."
 
             show guy smile with Dissolve(0.5)
-            "He inspects his arm, then looks towards the heavens with a wry smile." 
-            "Using his sword, he stumbles back onto his feet."
+            "He inspects his arm{cps=5}, {/cps}then looks towards the heavens with a wry smile." 
+            "Using his sword{cps=5}, {/cps}he stumbles back onto his feet."
             
+            camera 
             stop music
-            #TODO: BROKEN BLACK SCREEN
-            #scene expression Solid("#000000") with Dissolve(3.5) 
+            scene blackBG 
+            with Dissolve(3.5)
             "Forward on he marches."
-            "Along his path, he finds a wounded invader clinging to life like he was moments ago."
-            "After a moment of hesitation, he picked the soldier up and kept moving forward. "
+            "Along his path{cps=5}, {/cps}he finds a wounded invader clinging to life like he was moments ago."
+            "After a moment of hesitation{cps=5}, {/cps}he picked the soldier up and kept moving forward. "
             "This mercy won't go to waste."
             pause(1.5)
     

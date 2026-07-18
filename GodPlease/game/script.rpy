@@ -249,10 +249,10 @@ label start:
 
     window hide
     pause(1.5)
-    n "{cps=3}...{/cps}God{cps=5}, {/cps}can you hear me?"
+    n ".{cps=3}..{/cps}God{cps=5}, {/cps}can you hear me?"
 
     n "I know I've never kept up with prayer before."
-    n "{cps=3}...{/cps}I never thought I'd need it."
+    n ".{cps=3}..{/cps}I never thought I'd need it."
     n "But you're my last hope now."
     window hide
     camera:
@@ -352,7 +352,7 @@ label start:
     n "The fields were burned to the ground{cps=5}, {/cps}and the sky was painted black with their cinders."
 
     show guy neutral with Dissolve(0.5)
-    n "{cps=3}...{/cps}The smell reminded me of my father's cooking."
+    n ".{cps=3}..{/cps}The smell reminded me of my father's cooking."
 
     window hide
     pause (1.5)

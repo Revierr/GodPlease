@@ -288,7 +288,7 @@ style quick_button_text:
 ## to other menus, and to start the game.
 
 screen navigation():
-
+    on "show" action Stop(channel="textsound")
     vbox:
         style_prefix "navigation"
         if renpy.get_screen("main_menu"):

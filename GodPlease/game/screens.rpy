@@ -569,7 +569,9 @@ screen about():
             text _("Art/Writer {a=https://revierr.itch.io/}revierr{/a}")
             text _("Code {a=https://indecisiv.itch.io/}indecisiv{/a}\n")
 
-
+            label "Sounds"
+            text _("Sourced from freesound.org")
+            text _("{a=https://freesound.org/people/GameDevC/}GameDevC{/a}, {a=https://freesound.org/people/lennyboy/}lennyboy{/a}, {a=https://freesound.org/people/loganzsound/}loganzsound{/a}\n")
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
@@ -789,7 +791,7 @@ screen settings():
                 vbox:
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("Ambiance Volume")
 
                         hbox:
                             bar value Preference("music volume")
